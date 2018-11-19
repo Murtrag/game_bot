@@ -20,7 +20,6 @@ while True:
 			alchemy_raw = pyautogui.locateOnScreen('media/menu/alchemy.png')  #find alchemy option
 			assert alchem_raw
 		except:			
-			alchemy_raw = pyautogui.locateOnScreen('media/menu/alchemy2.png')  #find alchemy option
 			alchemy_raw = pyautogui.locateOnScreen('media/menu/alchemy3.png')  #find alchemy option
 		finally:
 			alchemy_x, alchemy_y = pyautogui.center(alchemy_raw)
