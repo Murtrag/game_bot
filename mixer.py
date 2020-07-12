@@ -6,6 +6,7 @@ from random import randint
 import find_in_box
 mouse = HumanClicker()
 
+inventory = find_in_box.FindItem('media/box-titles/inventory.png')
 while True:
 	try:
 		inventory = find_in_box.FindItem('media/box-titles/inventory.png')
