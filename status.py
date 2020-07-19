@@ -14,7 +14,7 @@ class Status_Bar:
 	@property
 	def hunger(self):
 		'''Returns True or False depends od food bar status 80% - True'''
-		if  pyautogui.locateOnScreen('media/status-bar/hunger.png'):
+		if  pyautogui.locateOnScreen('media/status-bar/hunger.png', confidence=.8):
 			return False
 		else:
 			return True
@@ -22,7 +22,7 @@ class Status_Bar:
 	@property
 	def thirst(self):
 		'''Returns True or False depends od drink bar status 80% - True'''
-		if  pyautogui.locateOnScreen('media/status-bar/thirst.png'):
+		if  pyautogui.locateOnScreen('media/status-bar/thirst.png', confidence=.8):
 			return True
 		else:
 			return False

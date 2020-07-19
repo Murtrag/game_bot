@@ -15,7 +15,7 @@ while True:
             mouse.move((x,y),2 )
             pyautogui.doubleClick()  #dbl click first herb
 
-            mouse.move((x+randint(1,4),y+randint(30,150)),1 )
+            mouse.move((x+randint(1,4),y+randint(30,100)),1 )
             pyautogui.rightClick()  #open menu with mixing option
             print('2')
             time.sleep(randint(1,2))
