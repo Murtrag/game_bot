@@ -1,11 +1,8 @@
-from status import Status_Bar
 from pyclick import HumanClicker 
 import pyautogui
-import time
-from random import randint, random
+from random import randint
 
 mouse = HumanClicker()
-status = Status_Bar()
 class Crafting:
     clicks = 0
 
