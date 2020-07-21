@@ -4,58 +4,57 @@ import pyautogui
 import time
 from random import randint, random
 from lib.craft import Crafting
+from lib.window import Window
 mouse = HumanClicker()
 status = Status_Bar()
-# class Crafting:
-#     clicks = 0
-
-#     def __init__(self, button):
-#         self._button_r = button
-
-#     @property
-#     def _button(self):
-#         return pyautogui.locateOnScreen(self._button_r, confidence=.8) 
-
-#     @property
-#     def _button_x(self):
-#         return pyautogui.center(self._button)[0]
-
-#     @property
-#     def _button_y(self):
-#         return pyautogui.center(self._button)[1]
-
-#     def continue_(self):
-#         mouse.move((randint(self._button_x-30, self._button_x+30),randint(self._button_y-3,self._button_y+3)),2 ) 
-#         pyautogui.click()
-
-#     @property
-#     def _hand(self):
-#         hand =  pyautogui.locateOnScreen('media/items/hand.png', confidence=.8) 
-#         return pyautogui.center(hand)
-
-#     def combine(self):
-#         x,y = self._hand
-#         x+=65
-#         y+=22
-#         mouse.move((randint(x-3, x+3),randint(y-3,y+3)),2 ) 
-#         pyautogui.click()
-#         Crafting.clicks+=1
-
-#     def get_resource_position(self):
-#         x,y = self._hand
-#         # mouse.move((randint(x+16,x+49),randint(y+2,y+27)),2 ) 
-#         return (randint(x+16,x+49), randint(y+2,y+27))
-
-
-        
-
-
 
 t = Crafting(button='media/box-titles/create.png')
+source = Window(title='media/box-titles/source.png')
+inventory = Window(title='media/box-titles/inventory.png')
+target = Window(title='media/box-titles/target.png')
+
 while True:
     if status.stamin:
         t.continue_()
+        # Get resources
+        s_s = source.find_item(item="media/items/stone_shards.png")
+        mouse.move((s_s[0][0],s_s[0][1]),2 ) 
+        pyautogui.mouseDown()
+        inventory_workspace = inventory.get_workspace()
+        mouse.move((inventory_workspace['left'],inventory_workspace["top"]+inventory_workspace["height"]),2 ) 
+        pyautogui.mouseUp()
+        time.sleep(random()*2.5)
+        pyautogui.press('enter')
+
+        # Add resources to Crafting window and combine it
+        s_b = inventory.find_item(item="media/items/stone_shards.png")
+        mouse.move((s_b[0][0],s_b[0][1]),2 ) 
+        pyautogui.mouseDown()
+        r_p = t.get_resource_position()
+        mouse.move(r_p, 2) 
+        pyautogui.mouseUp()
         t.combine()
-        t.get_resource_position()
-        time.sleep(random()*2)
+
+        # produce some bricks
+        t.continue_()
+
+
+        # Storage done products
+        if status.stamin:
+            s_b = inventory.find_item(item="media/items/stone_brick.png")
+            mouse.move((s_b[0][0],s_b[0][1]),2 ) 
+            pyautogui.mouseDown()
+            target_workspace = target.get_workspace()
+            mouse.move((target_workspace['left'],target_workspace["top"]+target_workspace["height"]),2 ) 
+            pyautogui.mouseUp()
+
+
+
+
+
+        
+        # pyautogui.mouseUp()
+        # t.combine()
+        # t.get_resource_position()
+        # time.sleep(random()*2)
     
