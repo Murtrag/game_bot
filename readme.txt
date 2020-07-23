@@ -16,7 +16,7 @@ III Scripts
   	@TODO
 
  b) Mixer - Script to mix automatically herbs
- 	Before start move all alchemy products into a bagpack then open the backpack,
+ 	Before start move all alchemy products into a backpack then open the backpack,
 	shuffle products by clicking on "QL" table header and run script
 
  c) Stone cutter - Script to automatically turn stone shards to stone bricks

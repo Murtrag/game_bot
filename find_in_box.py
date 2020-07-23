@@ -1,3 +1,4 @@
+# This module is depricated by lib/windows
 import pyautogui, readbox
 from pyclick import HumanClicker
 from random import randint
