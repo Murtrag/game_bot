@@ -4,51 +4,42 @@ import pyautogui
 import time
 import random
 import find_in_box
+from lib.window import Window
 
 mouse = HumanClicker()
-#
 status = Status_Bar()
 mode = input("What kind of mining are you planing to do? w(wall)/v((vein)")
 
 count = 0
 while True:
-        # if pyautogui.position()[0]>1919 and pyautogui.position()[1]<922:
-        if pyautogui.locateOnScreen('media/title-window/cave_wall.png', confidence=.8):
-        # if True:
-            print('cave wall jest')
+        if mode=="v" or pyautogui.locateOnScreen('media/title-window/cave_wall.png', confidence=.8):
             if status.stamin:
+                
                 pyautogui.typewrite('l')
                 count+=1
-                # time.sleep(random.randint(13,20))
                 time.sleep(random.random()*2)
 
                 if mode == "v" and count >= random.randint(10,50):
-                    pyautogui.typewrite('j')
-                    poi = find_in_box.FindItem('media/box-titles/pile-of-items.png') # pile of item
-                    try:
-                        expected_y = poi.find("are",expected_y)
-				
-                    except NameError:
-                        expected_y = poi.find("are",False)
+                    pyautogui.typewrite('l')
+                    time.sleep(random.random())
+                    pyautogui.typewrite('l')
+                    time.sleep(random.random())
+                    pyautogui.typewrite('l')
 
-                        pyautogui.mouseDown()
-                        mouse.move((random.randint(2700,2950),random.randint(400,600)),2 )
-                        pyautogui.mouseUp()
-                        mouse.move((random.randint(3100,3120),random.randint(336,640)),2)
-                        pyautogui.click()
-                        mouse.move((random.randint(3100,3120),random.randint(336,640)),2)
-                        count=0
+                    pile_of_items = Window(title='media/box-titles/pile-of-items.png')
+                    bsb = Window(title='media/box-titles/bsb.png')
+                    pyautogui.typewrite('l')
+                    s_s = pile_of_items.find_item(item="media/items/ore_iron.png")
+                    mouse.move((s_s[0][0],s_s[0][1]),2 ) 
+                    pyautogui.mouseDown()
+                    bsb_workspace = bsb.get_workspace()
+                    mouse.move((bsb_workspace['left'],bsb_workspace["top"]+bsb_workspace["height"]),2 ) 
+                    pyautogui.mouseUp()
+                    time.sleep(random.random()*2.5)
+                    mouse.move((random.randint(2679,2690),random.randint(472, 490)),2 ) 
+                    mouse.click()
 
-
-
-#while True:
-#	if status.stamin:
-#		location = pyautogui.locateOnScreen("media/box-titles/continue.png")
-#		mouse.move((random.randint(location[0],location[0]+location[2]),random.randint(location[1],location[1]+location[3])),2)
-#		pyautogui.click()
-#	if random.randint(1,5)==random.randint(1,5):
-#		mouse.move((random.randint(0,4000),random.randint(0,1900)),2)
-
+# 2679 472
 
 
 #full house pizza - weapon smithing
